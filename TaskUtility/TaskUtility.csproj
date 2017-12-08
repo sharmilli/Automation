@@ -32,21 +32,135 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessConfiguration.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DataAccess\AuditTrail.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\CarryForwardRule.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Country.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Email.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\EmailTemplate.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\File.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Role.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Rule.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Status.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Task.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TaskStatu.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TaskType.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TaskUtilityAutomation.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskUtilityAutomation.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\TaskUtilityAutomation.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\User.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\UserCountryRole.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\Email.cs" />
+    <Compile Include="Utilities\CalendarUtility.cs" />
+    <Compile Include="CarryForwardBusinessConfigurations.cs" />
+    <Compile Include="Utilities\ExportToExcel.cs" />
+    <Compile Include="IBusinessConfiguration.cs" />
+    <Compile Include="ICarryForwardBusinessConfiguration.cs" />
+    <Compile Include="Tasks\ITask.cs" />
+    <Compile Include="Tasks\Package.cs" />
+    <Compile Include="Tasks\Procedure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataAccess\TaskUtilityAutomation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TaskUtilityAutomation.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="DataAccess\TaskUtilityAutomation.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TaskUtilityAutomation.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataAccess\TaskUtilityAutomation.edmx.diagram">
+      <DependentUpon>TaskUtilityAutomation.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="AppData\BusinessConfiguration.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataAccess\TaskUtilityAutomation.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TaskUtilityAutomation.Context.cs</LastGenOutput>
+      <DependentUpon>TaskUtilityAutomation.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataAccess\TaskUtilityAutomation.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TaskUtilityAutomation.cs</LastGenOutput>
+      <DependentUpon>TaskUtilityAutomation.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

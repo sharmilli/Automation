@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2639ac3e70064098940d92e64c31d713" Name="Diagram1" >
+        <EntityTypeShape EntityType="TaskUtilityAutomation.AuditTrail" Width="1.5" PointX="12.75" PointY="10.125" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.CarryForwardRule" Width="1.5" PointX="7.5" PointY="13.125" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.Country" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.Email" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.EmailTemplate" Width="1.5" PointX="12.75" PointY="15.375" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.File" Width="1.5" PointX="12.75" PointY="18.875" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.Role" Width="1.5" PointX="0.75" PointY="9.375" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.Rule" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.Status" Width="1.5" PointX="13.5" PointY="7.25" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.Task" Width="1.5" PointX="10.5" PointY="12.25" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.TaskStatu" Width="1.5" PointX="15.75" PointY="13" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.TaskType" Width="1.5" PointX="8.25" PointY="10.25" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.UserCountryRole" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.User" Width="1.5" PointX="0.75" PointY="12.5" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_TaskAuditTrail" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_RuleCarryForwardRules" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_CountryUserCountryRole" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_EmailTemplateEmail" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_UserCountryRoleEmail" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_UserCountryRoleEmail1" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_UserCountryRoleEmail2" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_TaskEmailTemplate" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_TaskFile" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_RoleUserCountryRole" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_RuleTask" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_UserCountryRoleRule" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_UserCountryRoleRule1" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_StatusTaskStatus" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_Tasks_Tasks" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_TaskTaskStatus" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_TaskTypeTask" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_UserUserCountryRole" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

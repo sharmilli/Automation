@@ -1,0 +1,1074 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TaskUtilityAutomation.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuditTrails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Log" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Task_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CarryForwardRules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PendingSince" Type="datetime" Nullable="false" />
+          <Property Name="Rule_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Q1Month" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Emails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FromUserCountryRole_Id" Type="bigint" Nullable="false" />
+          <Property Name="EmailTemplate_Id" Type="bigint" Nullable="false" />
+          <Property Name="ToUserCountryRole_Id" Type="bigint" Nullable="false" />
+          <Property Name="CCUserCountryRole2_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="From" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="To" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CC" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Task_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Task_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rules">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BusinessDay" Type="smallint" Nullable="false" />
+          <Property Name="isRemaining" Type="bit" Nullable="false" />
+          <Property Name="UserCountryRole_Id" Type="bigint" Nullable="false" />
+          <Property Name="UserCountryRole1_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TaskType_Id" Type="int" Nullable="false" />
+          <Property Name="Rule_Id" Type="bigint" Nullable="false" />
+          <Property Name="ParentTaskId" Type="int" />
+        </EntityType>
+        <EntityType Name="TaskStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Task_Id" Type="int" Nullable="false" />
+          <Property Name="Status_Id" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserCountryRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Id" Type="bigint" Nullable="false" />
+          <Property Name="Role_Id" Type="int" Nullable="false" />
+          <Property Name="Country_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_CountryUserCountryRole">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCountryRoles">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailTemplateEmail">
+          <End Role="EmailTemplates" Type="Self.EmailTemplates" Multiplicity="1" />
+          <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="EmailTemplate_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleUserCountryRole">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCountryRoles">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleCarryForwardRules">
+          <End Role="Rules" Type="Self.Rules" Multiplicity="1" />
+          <End Role="CarryForwardRules" Type="Self.CarryForwardRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarryForwardRules">
+              <PropertyRef Name="Rule_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleTask">
+          <End Role="Rules" Type="Self.Rules" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rules">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="Rule_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatusTaskStatus">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="TaskStatus" Type="Self.TaskStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskStatus">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskAuditTrail">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="AuditTrails" Type="Self.AuditTrails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuditTrails">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskEmailTemplate">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="EmailTemplates" Type="Self.EmailTemplates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplates">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskFile">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Tasks">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="0..1" />
+          <End Role="Tasks1" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks1">
+              <PropertyRef Name="ParentTaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskTaskStatus">
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="1" />
+          <End Role="TaskStatus" Type="Self.TaskStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskStatus">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskTypeTask">
+          <End Role="TaskTypes" Type="Self.TaskTypes" Multiplicity="1" />
+          <End Role="Tasks" Type="Self.Tasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="TaskType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleEmail">
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="1" />
+          <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="FromUserCountryRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleEmail1">
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="1" />
+          <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="ToUserCountryRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleEmail2">
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="1" />
+          <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="CCUserCountryRole2_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleRule">
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="1" />
+          <End Role="Rules" Type="Self.Rules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rules">
+              <PropertyRef Name="UserCountryRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleRule1">
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="1" />
+          <End Role="Rules" Type="Self.Rules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rules">
+              <PropertyRef Name="UserCountryRole1_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserUserCountryRole">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserCountryRoles" Type="Self.UserCountryRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCountryRoles">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TaskUtilityAutomationStoreContainer">
+          <EntitySet Name="AuditTrails" EntityType="Self.AuditTrails" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="CarryForwardRules" EntityType="Self.CarryForwardRules" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Emails" EntityType="Self.Emails" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="EmailTemplates" EntityType="Self.EmailTemplates" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Files" EntityType="Self.Files" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Rules" EntityType="Self.Rules" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="TaskStatus" EntityType="Self.TaskStatus" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="TaskTypes" EntityType="Self.TaskTypes" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="UserCountryRoles" EntityType="Self.UserCountryRoles" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="TaskUtility" store:Type="Tables" />
+          <AssociationSet Name="FK_CountryUserCountryRole" Association="Self.FK_CountryUserCountryRole">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailTemplateEmail" Association="Self.FK_EmailTemplateEmail">
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleUserCountryRole" Association="Self.FK_RoleUserCountryRole">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleCarryForwardRules" Association="Self.FK_RuleCarryForwardRules">
+            <End Role="Rules" EntitySet="Rules" />
+            <End Role="CarryForwardRules" EntitySet="CarryForwardRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleTask" Association="Self.FK_RuleTask">
+            <End Role="Rules" EntitySet="Rules" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatusTaskStatus" Association="Self.FK_StatusTaskStatus">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="TaskStatus" EntitySet="TaskStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskAuditTrail" Association="Self.FK_TaskAuditTrail">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="AuditTrails" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskEmailTemplate" Association="Self.FK_TaskEmailTemplate">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="EmailTemplates" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskFile" Association="Self.FK_TaskFile">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Tasks" Association="Self.FK_Tasks_Tasks">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="Tasks1" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskTaskStatus" Association="Self.FK_TaskTaskStatus">
+            <End Role="Tasks" EntitySet="Tasks" />
+            <End Role="TaskStatus" EntitySet="TaskStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskTypeTask" Association="Self.FK_TaskTypeTask">
+            <End Role="TaskTypes" EntitySet="TaskTypes" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleEmail" Association="Self.FK_UserCountryRoleEmail">
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleEmail1" Association="Self.FK_UserCountryRoleEmail1">
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleEmail2" Association="Self.FK_UserCountryRoleEmail2">
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleRule" Association="Self.FK_UserCountryRoleRule">
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+            <End Role="Rules" EntitySet="Rules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleRule1" Association="Self.FK_UserCountryRoleRule1">
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+            <End Role="Rules" EntitySet="Rules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserUserCountryRole" Association="Self.FK_UserUserCountryRole">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserCountryRoles" EntitySet="UserCountryRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="TaskUtilityAutomation" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="TaskUtilityAutomationContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuditTrails" EntityType="TaskUtilityAutomation.AuditTrail" />
+          <EntitySet Name="CarryForwardRules" EntityType="TaskUtilityAutomation.CarryForwardRule" />
+          <EntitySet Name="Countries" EntityType="TaskUtilityAutomation.Country" />
+          <EntitySet Name="Emails" EntityType="TaskUtilityAutomation.Email" />
+          <EntitySet Name="EmailTemplates" EntityType="TaskUtilityAutomation.EmailTemplate" />
+          <EntitySet Name="Files" EntityType="TaskUtilityAutomation.File" />
+          <EntitySet Name="Roles" EntityType="TaskUtilityAutomation.Role" />
+          <EntitySet Name="Rules" EntityType="TaskUtilityAutomation.Rule" />
+          <EntitySet Name="Status" EntityType="TaskUtilityAutomation.Status" />
+          <EntitySet Name="Tasks" EntityType="TaskUtilityAutomation.Task" />
+          <EntitySet Name="TaskStatus" EntityType="TaskUtilityAutomation.TaskStatu" />
+          <EntitySet Name="TaskTypes" EntityType="TaskUtilityAutomation.TaskType" />
+          <EntitySet Name="UserCountryRoles" EntityType="TaskUtilityAutomation.UserCountryRole" />
+          <EntitySet Name="Users" EntityType="TaskUtilityAutomation.User" />
+          <AssociationSet Name="FK_TaskAuditTrail" Association="TaskUtilityAutomation.FK_TaskAuditTrail">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="AuditTrail" EntitySet="AuditTrails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleCarryForwardRules" Association="TaskUtilityAutomation.FK_RuleCarryForwardRules">
+            <End Role="Rule" EntitySet="Rules" />
+            <End Role="CarryForwardRule" EntitySet="CarryForwardRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CountryUserCountryRole" Association="TaskUtilityAutomation.FK_CountryUserCountryRole">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmailTemplateEmail" Association="TaskUtilityAutomation.FK_EmailTemplateEmail">
+            <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleEmail" Association="TaskUtilityAutomation.FK_UserCountryRoleEmail">
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleEmail1" Association="TaskUtilityAutomation.FK_UserCountryRoleEmail1">
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleEmail2" Association="TaskUtilityAutomation.FK_UserCountryRoleEmail2">
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskEmailTemplate" Association="TaskUtilityAutomation.FK_TaskEmailTemplate">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="EmailTemplate" EntitySet="EmailTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskFile" Association="TaskUtilityAutomation.FK_TaskFile">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="File" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RoleUserCountryRole" Association="TaskUtilityAutomation.FK_RoleUserCountryRole">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RuleTask" Association="TaskUtilityAutomation.FK_RuleTask">
+            <End Role="Rule" EntitySet="Rules" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleRule" Association="TaskUtilityAutomation.FK_UserCountryRoleRule">
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+            <End Role="Rule" EntitySet="Rules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCountryRoleRule1" Association="TaskUtilityAutomation.FK_UserCountryRoleRule1">
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+            <End Role="Rule" EntitySet="Rules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatusTaskStatus" Association="TaskUtilityAutomation.FK_StatusTaskStatus">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="TaskStatu" EntitySet="TaskStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tasks_Tasks" Association="TaskUtilityAutomation.FK_Tasks_Tasks">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="Task1" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskTaskStatus" Association="TaskUtilityAutomation.FK_TaskTaskStatus">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskStatu" EntitySet="TaskStatus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TaskTypeTask" Association="TaskUtilityAutomation.FK_TaskTypeTask">
+            <End Role="TaskType" EntitySet="TaskTypes" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserUserCountryRole" Association="TaskUtilityAutomation.FK_UserUserCountryRole">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AuditTrail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Log" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Task_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="TaskUtilityAutomation.FK_TaskAuditTrail" FromRole="AuditTrail" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="CarryForwardRule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PendingSince" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Rule_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Rule" Relationship="TaskUtilityAutomation.FK_RuleCarryForwardRules" FromRole="CarryForwardRule" ToRole="Rule" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Q1Month" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserCountryRoles" Relationship="TaskUtilityAutomation.FK_CountryUserCountryRole" FromRole="Country" ToRole="UserCountryRole" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromUserCountryRole_Id" Type="Int64" Nullable="false" />
+          <Property Name="EmailTemplate_Id" Type="Int64" Nullable="false" />
+          <Property Name="ToUserCountryRole_Id" Type="Int64" Nullable="false" />
+          <Property Name="CCUserCountryRole2_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="EmailTemplate" Relationship="TaskUtilityAutomation.FK_EmailTemplateEmail" FromRole="Email" ToRole="EmailTemplate" />
+          <NavigationProperty Name="UserCountryRole" Relationship="TaskUtilityAutomation.FK_UserCountryRoleEmail" FromRole="Email" ToRole="UserCountryRole" />
+          <NavigationProperty Name="UserCountryRole1" Relationship="TaskUtilityAutomation.FK_UserCountryRoleEmail1" FromRole="Email" ToRole="UserCountryRole" />
+          <NavigationProperty Name="UserCountryRole2" Relationship="TaskUtilityAutomation.FK_UserCountryRoleEmail2" FromRole="Email" ToRole="UserCountryRole" />
+        </EntityType>
+        <EntityType Name="EmailTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="From" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="To" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CC" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Task_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Emails" Relationship="TaskUtilityAutomation.FK_EmailTemplateEmail" FromRole="EmailTemplate" ToRole="Email" />
+          <NavigationProperty Name="Task" Relationship="TaskUtilityAutomation.FK_TaskEmailTemplate" FromRole="EmailTemplate" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Task_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Task" Relationship="TaskUtilityAutomation.FK_TaskFile" FromRole="File" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserCountryRoles" Relationship="TaskUtilityAutomation.FK_RoleUserCountryRole" FromRole="Role" ToRole="UserCountryRole" />
+        </EntityType>
+        <EntityType Name="Rule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessDay" Type="Int16" Nullable="false" />
+          <Property Name="isRemaining" Type="Boolean" Nullable="false" />
+          <Property Name="UserCountryRole_Id" Type="Int64" Nullable="false" />
+          <Property Name="UserCountryRole1_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CarryForwardRules" Relationship="TaskUtilityAutomation.FK_RuleCarryForwardRules" FromRole="Rule" ToRole="CarryForwardRule" />
+          <NavigationProperty Name="Tasks" Relationship="TaskUtilityAutomation.FK_RuleTask" FromRole="Rule" ToRole="Task" />
+          <NavigationProperty Name="UserCountryRole" Relationship="TaskUtilityAutomation.FK_UserCountryRoleRule" FromRole="Rule" ToRole="UserCountryRole" />
+          <NavigationProperty Name="UserCountryRole1" Relationship="TaskUtilityAutomation.FK_UserCountryRoleRule1" FromRole="Rule" ToRole="UserCountryRole" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TaskStatus" Relationship="TaskUtilityAutomation.FK_StatusTaskStatus" FromRole="Status" ToRole="TaskStatu" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskType_Id" Type="Int32" Nullable="false" />
+          <Property Name="Rule_Id" Type="Int64" Nullable="false" />
+          <Property Name="ParentTaskId" Type="Int32" />
+          <NavigationProperty Name="AuditTrails" Relationship="TaskUtilityAutomation.FK_TaskAuditTrail" FromRole="Task" ToRole="AuditTrail" />
+          <NavigationProperty Name="EmailTemplates" Relationship="TaskUtilityAutomation.FK_TaskEmailTemplate" FromRole="Task" ToRole="EmailTemplate" />
+          <NavigationProperty Name="Files" Relationship="TaskUtilityAutomation.FK_TaskFile" FromRole="Task" ToRole="File" />
+          <NavigationProperty Name="Rule" Relationship="TaskUtilityAutomation.FK_RuleTask" FromRole="Task" ToRole="Rule" />
+          <NavigationProperty Name="Tasks1" Relationship="TaskUtilityAutomation.FK_Tasks_Tasks" FromRole="Task" ToRole="Task1" />
+          <NavigationProperty Name="Task1" Relationship="TaskUtilityAutomation.FK_Tasks_Tasks" FromRole="Task1" ToRole="Task" />
+          <NavigationProperty Name="TaskStatus" Relationship="TaskUtilityAutomation.FK_TaskTaskStatus" FromRole="Task" ToRole="TaskStatu" />
+          <NavigationProperty Name="TaskType" Relationship="TaskUtilityAutomation.FK_TaskTypeTask" FromRole="Task" ToRole="TaskType" />
+        </EntityType>
+        <EntityType Name="TaskStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Task_Id" Type="Int32" Nullable="false" />
+          <Property Name="Status_Id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="TaskUtilityAutomation.FK_StatusTaskStatus" FromRole="TaskStatu" ToRole="Status" />
+          <NavigationProperty Name="Task" Relationship="TaskUtilityAutomation.FK_TaskTaskStatus" FromRole="TaskStatu" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="TaskType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tasks" Relationship="TaskUtilityAutomation.FK_TaskTypeTask" FromRole="TaskType" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="UserCountryRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Id" Type="Int64" Nullable="false" />
+          <Property Name="Role_Id" Type="Int32" Nullable="false" />
+          <Property Name="Country_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="TaskUtilityAutomation.FK_CountryUserCountryRole" FromRole="UserCountryRole" ToRole="Country" />
+          <NavigationProperty Name="Emails" Relationship="TaskUtilityAutomation.FK_UserCountryRoleEmail" FromRole="UserCountryRole" ToRole="Email" />
+          <NavigationProperty Name="Emails1" Relationship="TaskUtilityAutomation.FK_UserCountryRoleEmail1" FromRole="UserCountryRole" ToRole="Email" />
+          <NavigationProperty Name="Emails2" Relationship="TaskUtilityAutomation.FK_UserCountryRoleEmail2" FromRole="UserCountryRole" ToRole="Email" />
+          <NavigationProperty Name="Role" Relationship="TaskUtilityAutomation.FK_RoleUserCountryRole" FromRole="UserCountryRole" ToRole="Role" />
+          <NavigationProperty Name="Rules" Relationship="TaskUtilityAutomation.FK_UserCountryRoleRule" FromRole="UserCountryRole" ToRole="Rule" />
+          <NavigationProperty Name="Rules1" Relationship="TaskUtilityAutomation.FK_UserCountryRoleRule1" FromRole="UserCountryRole" ToRole="Rule" />
+          <NavigationProperty Name="User" Relationship="TaskUtilityAutomation.FK_UserUserCountryRole" FromRole="UserCountryRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserCountryRoles" Relationship="TaskUtilityAutomation.FK_UserUserCountryRole" FromRole="User" ToRole="UserCountryRole" />
+        </EntityType>
+        <Association Name="FK_TaskAuditTrail">
+          <End Type="TaskUtilityAutomation.Task" Role="Task" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.AuditTrail" Role="AuditTrail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuditTrail">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleCarryForwardRules">
+          <End Type="TaskUtilityAutomation.Rule" Role="Rule" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.CarryForwardRule" Role="CarryForwardRule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CarryForwardRule">
+              <PropertyRef Name="Rule_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CountryUserCountryRole">
+          <End Type="TaskUtilityAutomation.Country" Role="Country" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCountryRole">
+              <PropertyRef Name="Country_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmailTemplateEmail">
+          <End Type="TaskUtilityAutomation.EmailTemplate" Role="EmailTemplate" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Email" Role="Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EmailTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="EmailTemplate_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleEmail">
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Email" Role="Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="FromUserCountryRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleEmail1">
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Email" Role="Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="ToUserCountryRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleEmail2">
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Email" Role="Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="CCUserCountryRole2_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskEmailTemplate">
+          <End Type="TaskUtilityAutomation.Task" Role="Task" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.EmailTemplate" Role="EmailTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmailTemplate">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskFile">
+          <End Type="TaskUtilityAutomation.Task" Role="Task" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.File" Role="File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RoleUserCountryRole">
+          <End Type="TaskUtilityAutomation.Role" Role="Role" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCountryRole">
+              <PropertyRef Name="Role_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RuleTask">
+          <End Type="TaskUtilityAutomation.Rule" Role="Rule" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="Rule_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleRule">
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Rule" Role="Rule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rule">
+              <PropertyRef Name="UserCountryRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCountryRoleRule1">
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Rule" Role="Rule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCountryRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Rule">
+              <PropertyRef Name="UserCountryRole1_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatusTaskStatus">
+          <End Type="TaskUtilityAutomation.Status" Role="Status" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.TaskStatu" Role="TaskStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskStatu">
+              <PropertyRef Name="Status_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tasks_Tasks">
+          <End Type="TaskUtilityAutomation.Task" Role="Task" Multiplicity="0..1" />
+          <End Type="TaskUtilityAutomation.Task" Role="Task1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task1">
+              <PropertyRef Name="ParentTaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskTaskStatus">
+          <End Type="TaskUtilityAutomation.Task" Role="Task" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.TaskStatu" Role="TaskStatu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskStatu">
+              <PropertyRef Name="Task_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TaskTypeTask">
+          <End Type="TaskUtilityAutomation.TaskType" Role="TaskType" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="TaskType_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserUserCountryRole">
+          <End Type="TaskUtilityAutomation.User" Role="User" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.UserCountryRole" Role="UserCountryRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCountryRole">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="TaskUtilityAutomation" />
+        <Alias Key="Target" Value="TaskUtilityAutomation.Store" />
+        <EntityContainerMapping CdmEntityContainer="TaskUtilityAutomationContainer" StorageEntityContainer="TaskUtilityAutomationStoreContainer">
+          <EntitySetMapping Name="AuditTrails">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.AuditTrail">
+              <MappingFragment StoreEntitySet="AuditTrails">
+                <ScalarProperty Name="Task_Id" ColumnName="Task_Id" />
+                <ScalarProperty Name="Log" ColumnName="Log" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CarryForwardRules">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.CarryForwardRule">
+              <MappingFragment StoreEntitySet="CarryForwardRules">
+                <ScalarProperty Name="Rule_Id" ColumnName="Rule_Id" />
+                <ScalarProperty Name="PendingSince" ColumnName="PendingSince" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Q1Month" ColumnName="Q1Month" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.Email">
+              <MappingFragment StoreEntitySet="Emails">
+                <ScalarProperty Name="CCUserCountryRole2_Id" ColumnName="CCUserCountryRole2_Id" />
+                <ScalarProperty Name="ToUserCountryRole_Id" ColumnName="ToUserCountryRole_Id" />
+                <ScalarProperty Name="EmailTemplate_Id" ColumnName="EmailTemplate_Id" />
+                <ScalarProperty Name="FromUserCountryRole_Id" ColumnName="FromUserCountryRole_Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplates">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.EmailTemplate">
+              <MappingFragment StoreEntitySet="EmailTemplates">
+                <ScalarProperty Name="Task_Id" ColumnName="Task_Id" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="CC" ColumnName="CC" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.File">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="Task_Id" ColumnName="Task_Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rules">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.Rule">
+              <MappingFragment StoreEntitySet="Rules">
+                <ScalarProperty Name="UserCountryRole1_Id" ColumnName="UserCountryRole1_Id" />
+                <ScalarProperty Name="UserCountryRole_Id" ColumnName="UserCountryRole_Id" />
+                <ScalarProperty Name="isRemaining" ColumnName="isRemaining" />
+                <ScalarProperty Name="BusinessDay" ColumnName="BusinessDay" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.Task">
+              <MappingFragment StoreEntitySet="Tasks">
+                <ScalarProperty Name="ParentTaskId" ColumnName="ParentTaskId" />
+                <ScalarProperty Name="Rule_Id" ColumnName="Rule_Id" />
+                <ScalarProperty Name="TaskType_Id" ColumnName="TaskType_Id" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskStatus">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.TaskStatu">
+              <MappingFragment StoreEntitySet="TaskStatus">
+                <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
+                <ScalarProperty Name="Task_Id" ColumnName="Task_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskTypes">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.TaskType">
+              <MappingFragment StoreEntitySet="TaskTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCountryRoles">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.UserCountryRole">
+              <MappingFragment StoreEntitySet="UserCountryRoles">
+                <ScalarProperty Name="Country_Id" ColumnName="Country_Id" />
+                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
