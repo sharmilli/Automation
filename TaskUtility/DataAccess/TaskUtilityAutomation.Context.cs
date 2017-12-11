@@ -39,5 +39,7 @@ namespace TaskUtility.DataAccess
         public virtual DbSet<TaskType> TaskTypes { get; set; }
         public virtual DbSet<UserCountryRole> UserCountryRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<FileTable> FileTables { get; set; }
+        public virtual DbSet<FileTemplate> FileTemplates { get; set; }
     }
 }

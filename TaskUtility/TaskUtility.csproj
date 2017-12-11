@@ -81,6 +81,12 @@
     <Compile Include="DataAccess\File.cs">
       <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\FileTable.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\FileTemplate.cs">
+      <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\Role.cs">
       <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
     </Compile>
@@ -116,6 +122,7 @@
       <DependentUpon>TaskUtilityAutomation.tt</DependentUpon>
     </Compile>
     <Compile Include="Tasks\Email.cs" />
+    <Compile Include="Tasks\TemplateBinding.cs" />
     <Compile Include="Utilities\CalendarUtility.cs" />
     <Compile Include="CarryForwardBusinessConfigurations.cs" />
     <Compile Include="Utilities\ExportToExcel.cs" />
