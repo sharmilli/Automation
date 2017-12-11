@@ -61,6 +61,29 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Task_Id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="FileTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SheetName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColumnMin" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ColumnMax" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="RowMin" Type="int" Nullable="false" />
+          <Property Name="RowMax" Type="int" Nullable="false" />
+          <Property Name="TemplateId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+          <Property Name="Template" Type="varbinary(max)" Nullable="false" />
+          <Property Name="Extention" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="Id" />
@@ -150,6 +173,30 @@
             </Principal>
             <Dependent Role="Emails">
               <PropertyRef Name="EmailTemplate_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FileTable_FileTemplate">
+          <End Role="FileTemplate" Type="Self.FileTemplate" Multiplicity="1" />
+          <End Role="FileTable" Type="Self.FileTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileTable">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FileTemplate_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="FileTemplate" Type="Self.FileTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileTemplate">
+              <PropertyRef Name="CountryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -352,6 +399,8 @@
           <EntitySet Name="Emails" EntityType="Self.Emails" Schema="TaskUtility" store:Type="Tables" />
           <EntitySet Name="EmailTemplates" EntityType="Self.EmailTemplates" Schema="TaskUtility" store:Type="Tables" />
           <EntitySet Name="Files" EntityType="Self.Files" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="FileTable" EntityType="Self.FileTable" Schema="TaskUtility" store:Type="Tables" />
+          <EntitySet Name="FileTemplate" EntityType="Self.FileTemplate" Schema="TaskUtility" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="TaskUtility" store:Type="Tables" />
           <EntitySet Name="Rules" EntityType="Self.Rules" Schema="TaskUtility" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="TaskUtility" store:Type="Tables" />
@@ -367,6 +416,14 @@
           <AssociationSet Name="FK_EmailTemplateEmail" Association="Self.FK_EmailTemplateEmail">
             <End Role="EmailTemplates" EntitySet="EmailTemplates" />
             <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FileTable_FileTemplate" Association="Self.FK_FileTable_FileTemplate">
+            <End Role="FileTemplate" EntitySet="FileTemplate" />
+            <End Role="FileTable" EntitySet="FileTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FileTemplate_Countries" Association="Self.FK_FileTemplate_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="FileTemplate" EntitySet="FileTemplate" />
           </AssociationSet>
           <AssociationSet Name="FK_RoleUserCountryRole" Association="Self.FK_RoleUserCountryRole">
             <End Role="Roles" EntitySet="Roles" />
@@ -524,6 +581,16 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserCountryRole" EntitySet="UserCountryRoles" />
           </AssociationSet>
+          <EntitySet Name="FileTables" EntityType="TaskUtilityAutomation.FileTable" />
+          <EntitySet Name="FileTemplates" EntityType="TaskUtilityAutomation.FileTemplate" />
+          <AssociationSet Name="FK_FileTemplate_Countries" Association="TaskUtilityAutomation.FK_FileTemplate_Countries">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="FileTemplate" EntitySet="FileTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FileTable_FileTemplate" Association="TaskUtilityAutomation.FK_FileTable_FileTemplate">
+            <End Role="FileTemplate" EntitySet="FileTemplates" />
+            <End Role="FileTable" EntitySet="FileTables" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AuditTrail">
           <Key>
@@ -551,6 +618,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Q1Month" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserCountryRoles" Relationship="TaskUtilityAutomation.FK_CountryUserCountryRole" FromRole="Country" ToRole="UserCountryRole" />
+          <NavigationProperty Name="FileTemplates" Relationship="TaskUtilityAutomation.FK_FileTemplate_Countries" FromRole="Country" ToRole="FileTemplate" />
         </EntityType>
         <EntityType Name="Email">
           <Key>
@@ -901,6 +969,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FileTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="TableName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SheetName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ColumnMin" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ColumnMax" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RowMin" Type="Int32" Nullable="false" />
+          <Property Name="RowMax" Type="Int32" Nullable="false" />
+          <Property Name="TemplateId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="FileTemplate" Relationship="TaskUtilityAutomation.FK_FileTable_FileTemplate" FromRole="FileTable" ToRole="FileTemplate" />
+        </EntityType>
+        <EntityType Name="FileTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <Property Name="Template" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="Extention" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="TaskUtilityAutomation.FK_FileTemplate_Countries" FromRole="FileTemplate" ToRole="Country" />
+          <NavigationProperty Name="FileTables" Relationship="TaskUtilityAutomation.FK_FileTable_FileTemplate" FromRole="FileTemplate" ToRole="FileTable" />
+        </EntityType>
+        <Association Name="FK_FileTemplate_Countries">
+          <End Type="TaskUtilityAutomation.Country" Role="Country" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.FileTemplate" Role="FileTemplate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileTemplate">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FileTable_FileTemplate">
+          <End Type="TaskUtilityAutomation.FileTemplate" Role="FileTemplate" Multiplicity="1" />
+          <End Type="TaskUtilityAutomation.FileTable" Role="FileTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileTable">
+              <PropertyRef Name="TemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1042,6 +1160,31 @@
             <EntityTypeMapping TypeName="TaskUtilityAutomation.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileTables">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.FileTable">
+              <MappingFragment StoreEntitySet="FileTable">
+                <ScalarProperty Name="TemplateId" ColumnName="TemplateId" />
+                <ScalarProperty Name="RowMax" ColumnName="RowMax" />
+                <ScalarProperty Name="RowMin" ColumnName="RowMin" />
+                <ScalarProperty Name="ColumnMax" ColumnName="ColumnMax" />
+                <ScalarProperty Name="ColumnMin" ColumnName="ColumnMin" />
+                <ScalarProperty Name="SheetName" ColumnName="SheetName" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileTemplates">
+            <EntityTypeMapping TypeName="TaskUtilityAutomation.FileTemplate">
+              <MappingFragment StoreEntitySet="FileTemplate">
+                <ScalarProperty Name="Extention" ColumnName="Extention" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

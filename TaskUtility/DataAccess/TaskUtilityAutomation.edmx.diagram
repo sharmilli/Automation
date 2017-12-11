@@ -37,6 +37,10 @@
         <AssociationConnector Association="TaskUtilityAutomation.FK_TaskTaskStatus" />
         <AssociationConnector Association="TaskUtilityAutomation.FK_TaskTypeTask" />
         <AssociationConnector Association="TaskUtilityAutomation.FK_UserUserCountryRole" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.FileTable" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="TaskUtilityAutomation.FileTemplate" Width="1.5" PointX="3" PointY="4.75" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_FileTemplate_Countries" />
+        <AssociationConnector Association="TaskUtilityAutomation.FK_FileTable_FileTemplate" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
