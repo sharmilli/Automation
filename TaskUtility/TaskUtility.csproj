@@ -125,7 +125,6 @@
     <Compile Include="Tasks\TemplateBinding.cs" />
     <Compile Include="Utilities\CalendarUtility.cs" />
     <Compile Include="CarryForwardBusinessConfigurations.cs" />
-    <Compile Include="Utilities\ExportToExcel.cs" />
     <Compile Include="IBusinessConfiguration.cs" />
     <Compile Include="ICarryForwardBusinessConfiguration.cs" />
     <Compile Include="Tasks\ITask.cs" />
@@ -138,6 +137,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskUtilityAutomation.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\TemplateBindingUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
