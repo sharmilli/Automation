@@ -8,10 +8,10 @@ namespace TaskUtility.Utilities
 {
     public static class EmailUtlity
     {
-        private static string server = string.Empty;
-        private static int port = 587;
-        private static string serverMailId = string.Empty;
-        private static string serverLogon = string.Empty;
+        private static string server = ConfigurationSettings.AppSettings.Get("MailServer");
+        private static int port = Convert.ToInt32(ConfigurationSettings.AppSettings.Get("Port"));
+        private static string serverMailId = ConfigurationSettings.AppSettings.Get("Sender");
+        private static string serverLogon = ConfigurationSettings.AppSettings.Get("Password");
         public static bool SendEmail(string from,List<string> toList, List<string> ccList, string subject,string message)
         {
             try
