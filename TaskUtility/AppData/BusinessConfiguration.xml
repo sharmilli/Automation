@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <BusinessSpecification>
-  <Business id="1" name="Mexico" q1Month="Dec" remainingWorkDays="4" requestorEmail=""/>
-  <Business id="2" name="Equador" q1Month="Dec" remainingWorkDays="1" requestorEmail=""/>
-  <Business id="3" name="Brazil" q1Month="Dec" remainingWorkDays="3" requestorEmail=""/>
-  <Business id="4" name="Puerto Rico" q1Month="Dec" remainingWorkDays="3" requestorEmail=""/>
+  <Business id="1" name="Mexico" q1Month="Dec" remainingWorkDays="4" requestorEmail="sharmili.priyadharsini@aig.com" uniqueKey="Nov@2017"/>
+  <Business id="2" name="Equador" q1Month="Dec" remainingWorkDays="1" requestorEmail="sharmili.priyadharsini@aig.com" uniqueKey="Nov@2017"/>
+  <Business id="3" name="Brazil" q1Month="Dec" remainingWorkDays="3" requestorEmail="sharmili.priyadharsini@aig.com" uniqueKey="Nov@2017"/>
+  <Business id="4" name="Puerto Rico" q1Month="Dec" remainingWorkDays="3" requestorEmail="sharmili.priyadharsini@aig.com" uniqueKey="Nov@2017"/>
 </BusinessSpecification>

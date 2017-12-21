@@ -137,6 +137,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskUtilityAutomation.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\EmailUtlity.cs" />
     <Compile Include="Utilities\TemplateBindingUtility.cs" />
   </ItemGroup>
   <ItemGroup>
