@@ -21,6 +21,7 @@ namespace TaskUtility.Utilities
                 smtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
                 mail.From = new MailAddress(from);
                 Parallel.ForEach(toList, e => mail.To.Add(e));
+                Parallel.ForEach(ccList, e => mail.CC.Add(e));
                 mail.Subject = subject;
                 mail.Body = message;
                 smtpServer.UseDefaultCredentials = false;
@@ -35,8 +36,6 @@ namespace TaskUtility.Utilities
                 return false;
 
             }
-            
-
         }
     }
 }
