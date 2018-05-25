@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskUtility", "TaskUtility\TaskUtility.csproj", "{443BAB37-D37E-4699-A998-0EC2066F2AFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskUtilityTest", "TaskUtilityTest\TaskUtilityTest.csproj", "{4B802FC1-CC74-44E5-B428-E547D72C5AFD}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AutomationSetup", "AutomationSetup\AutomationSetup.vdproj", "{56EA888E-FAC8-4CE0-B851-AA290FC67422}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Development|Any CPU = Development|Any CPU
+		Development|x64 = Development|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Debug|x64.Build.0 = Debug|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Development|Any CPU.ActiveCfg = Development|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Development|Any CPU.Build.0 = Development|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Development|x64.ActiveCfg = Development|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Development|x64.Build.0 = Development|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Release|x64.ActiveCfg = Release|Any CPU
+		{443BAB37-D37E-4699-A998-0EC2066F2AFB}.Release|x64.Build.0 = Release|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Debug|x64.Build.0 = Debug|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Development|Any CPU.ActiveCfg = Development|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Development|Any CPU.Build.0 = Development|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Development|x64.ActiveCfg = Development|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Development|x64.Build.0 = Development|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Release|Any CPU.ActiveCfg = Development|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B802FC1-CC74-44E5-B428-E547D72C5AFD}.Release|x64.Build.0 = Release|Any CPU
+		{56EA888E-FAC8-4CE0-B851-AA290FC67422}.Debug|Any CPU.ActiveCfg = Debug
+		{56EA888E-FAC8-4CE0-B851-AA290FC67422}.Debug|x64.ActiveCfg = Debug
+		{56EA888E-FAC8-4CE0-B851-AA290FC67422}.Development|Any CPU.ActiveCfg = Debug
+		{56EA888E-FAC8-4CE0-B851-AA290FC67422}.Development|x64.ActiveCfg = Debug
+		{56EA888E-FAC8-4CE0-B851-AA290FC67422}.Release|Any CPU.ActiveCfg = Release
+		{56EA888E-FAC8-4CE0-B851-AA290FC67422}.Release|x64.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {49F5533C-E8A6-4B63-AAE9-63B506910FEF}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs.abp.aig.net:8080/tfs/aigapps
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TaskUtility\\TaskUtility.csproj
+		SccProjectName1 = TaskUtility
+		SccLocalPath1 = TaskUtility
+		SccProjectUniqueName2 = TaskUtilityTest\\TaskUtilityTest.csproj
+		SccProjectName2 = TaskUtilityTest
+		SccLocalPath2 = TaskUtilityTest
+	EndGlobalSection
+EndGlobal
